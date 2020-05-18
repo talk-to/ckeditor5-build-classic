@@ -3,10 +3,10 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 export default class Formatters extends Plugin {
     init() {
         const editor = this.editor;
-        // let allowedAttributes = [
-        //     'width', 'height', 'style', 'class', 'id',  'align',
-        //     'border', 'cellspacing', 'cellpadding', 'color', 
-        // ];
+        let allowedAttributes = [
+            'width', 'height', 'style', 'class', 'id',  'align',
+            'border', 'cellspacing', 'cellpadding', 'color', 
+        ];
         const wanted = [
             {
                 element: 'div',
@@ -55,10 +55,6 @@ export default class Formatters extends Plugin {
                 attrs: [ 'class', 'style', '__style', 'color', 'id' ]
             },
             {
-                element: 'image',
-                attrs: [ 'class', 'style', '__style', 'width', 'height']
-            },
-            {
                 element: 'img',
                 attrs: [ 'class', 'style', '__style', 'width', 'height']
             },
@@ -88,12 +84,12 @@ export default class Formatters extends Plugin {
                 allowWhere: '$block',
                 inheritAllFrom: '$block',
                 allowContentOf: '$root',
-                allowAttributes: attrs
+                allowAttributes: allowedAttributes
                 // isBlock: !!isBlock,
             } );
             editor.conversion.elementToElement( { model: element, view: element } );
-            if ( attrs && attrs.length ) {
-                for ( const attr of attrs ) {
+            if ( allowedAttributes && allowedAttributes.length ) {
+                for ( const attr of allowedAttributes ) {
                 editor.conversion.attributeToAttribute( { model: attr, view: attr } );
                 }
             }

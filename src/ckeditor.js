@@ -31,6 +31,11 @@ import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import Formatters from './formatters';
+import NestedTables from './nested-tables';
+import CustomFigureAttributes from './custom-figure-attributes';
+import TableProperties from '@ckeditor/ckeditor5-table/src/tableproperties';
+// import TableCellProperties from '@ckeditor/ckeditor5-table/src/tablecellproperties';
+
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -59,7 +64,11 @@ ClassicEditor.builtinPlugins = [
 	Table,
 	TableToolbar,
 	TextTransformation,
-	Formatters
+	TableProperties,
+	// TableCellProperties,
+	Formatters,
+	NestedTables,
+	CustomFigureAttributes,
 ];
 
 // Editor configuration.
@@ -95,10 +104,15 @@ ClassicEditor.defaultConfig = {
 	},
 	table: {
 		contentToolbar: [
-			'tableColumn',
-			'tableRow',
-			'mergeTableCells'
-		]
+			'tableColumn', 'tableRow', 'mergeTableCells', 'tableProperties'/*, 'tableCellProperties'*/
+		],
+		// Configuration of the TableProperties plugin.
+		// tableProperties: {
+		// },
+		// // Configuration of the TableCellProperties plugin.
+		// tableCellProperties: {
+		// 		// ...
+		// }
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
